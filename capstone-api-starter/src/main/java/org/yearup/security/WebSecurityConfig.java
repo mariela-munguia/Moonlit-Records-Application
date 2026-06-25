@@ -18,7 +18,7 @@ import org.yearup.security.jwt.TokenProvider;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
 
     private final TokenProvider tokenProvider;
@@ -62,6 +62,13 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/login", "/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/products", "/products/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/categories", "/categories/**").permitAll()
+                        .requestMatchers("/cart/**", "/profile/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/products", "/categories").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/products/**", "/categories/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/products/**", "/categories/**").authenticated()
                         .anyRequest().permitAll())
 
                 .addFilterBefore(new JWTFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
