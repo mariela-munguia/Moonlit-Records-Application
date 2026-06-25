@@ -1,7 +1,3 @@
-<p align="center">
-  A backend-driven record shop application where users can browse vinyl records, place orders, and interact with store data through API functionality.
-</p>
-
 <h1 align="center">🌙 Moonlit Records</h1>
 
 <p align="center">
