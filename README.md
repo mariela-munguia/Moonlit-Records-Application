@@ -1,7 +1,13 @@
 <!-- Moonlit Records README -->
 
 <p align="center">
-  <img src="./assets/moonlit-records-logo.png" alt="Moonlit Records Logo" width="260"/>
+  <img src="./capstone-client-recordshop/images/moonlit-records-logo.png" alt="Moonlit Records Logo" width="260"/>
+</p>
+
+<h1 align="center">🌙 Moonlit Records</h1>
+
+<p align="center">
+  A backend-driven record shop application where users can browse vinyl records, place orders, and interact with store data through API functionality.
 </p>
 
 <h1 align="center">🌙 Moonlit Records</h1>
@@ -13,10 +19,10 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Java-Backend-blue?style=for-the-badge&logo=openjdk" />
   <img src="https://img.shields.io/badge/REST_API-Store_Logic-purple?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Postman-API_Testing-orange?style=for-the-badge&logo=postman" />
+  <img src="https://img.shields.io/badge/Insomnia-API_Testing-5849BE?style=for-the-badge&logo=insomnia" />
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
   <img src="https://img.shields.io/badge/GitHub-Portfolio_Project-black?style=for-the-badge&logo=github" />
 </p>
-
 ---
 
 ## ✨ Project Overview
@@ -35,7 +41,7 @@ This project was built to strengthen my skills in:
 
 ---
 
-## 🌌 Brand Concept
+## Brand Concept
 
 Moonlit Records combines a love for music, design, and backend development.
 
@@ -50,7 +56,7 @@ The goal was to make the project feel like a real product, not just a class assi
 
 ---
 
-## 🛍️ Features
+## Features
 
 - Browse vinyl records
 - View record details
@@ -62,24 +68,23 @@ The goal was to make the project feel like a real product, not just a class assi
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Technology | Purpose |
 |----------|---------|
 | Java | Backend application logic |
 | REST API | Communication between client and server |
 | JSON | Data formatting |
-| Postman | API testing |
+| Insomnia | API testing |
+| MySQL | Database storage |
 | Git | Version control |
 | GitHub | Project hosting and documentation |
 | IntelliJ IDEA | Development environment |
-| SQL / MySQL | Database support, if used |
 
-> Note: Update this table if your final project uses different tools.
 
 ---
 
-## 🔌 API Functionality
+## API Functionality
 
 Moonlit Records includes API-driven functionality to support record shop operations.
 
@@ -93,11 +98,10 @@ Moonlit Records includes API-driven functionality to support record shop operati
 | `PUT` | `/inventory/{id}` | Update inventory information |
 | `DELETE` | `/records/{id}` | Remove a record from the shop |
 
-> Replace these with your real endpoints once your API is complete.
 
 ---
 
-## 🧪 Sample API Response
+## Sample API Response
 
 ```json
 {
