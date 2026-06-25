@@ -1,7 +1,7 @@
 <!-- Moonlit Records README -->
 
 <p align="center">
-  <img src="./capstone-client-recordshop/images/products/moonlit_records_logo_design.png" alt="Moonlit Records Logo" width="260"/>
+  <img src="./capstone-client-recordshop/images/products/moonlit-records-logo.png" alt="Moonlit Records Logo" width="260"/>
 </p>
 <h1 align="center">🌙 Moonlit Records</h1>
 
