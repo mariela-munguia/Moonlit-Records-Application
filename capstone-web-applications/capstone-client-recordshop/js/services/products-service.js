@@ -15,69 +15,138 @@ class ProductService {
         subCategory: undefined,
         queryString: () => {
             let qs = "";
-            if(this.filter.cat){ qs = `cat=${this.filter.cat}`; }
+
+            if(this.filter.cat)
+            {
+                qs = `cat=${this.filter.cat}`;
+            }
+
             if(this.filter.minPrice)
             {
                 const minP = `minPrice=${this.filter.minPrice}`;
-                if(qs.length>0) { qs += `&${minP}`; }
-                else { qs = minP; }
+
+                if(qs.length > 0)
+                {
+                    qs += `&${minP}`;
+                }
+                else
+                {
+                    qs = minP;
+                }
             }
+
             if(this.filter.maxPrice)
             {
                 const maxP = `maxPrice=${this.filter.maxPrice}`;
-                if(qs.length>0) { qs += `&${maxP}`; }
-                else { qs = maxP; }
+
+                if(qs.length > 0)
+                {
+                    qs += `&${maxP}`;
+                }
+                else
+                {
+                    qs = maxP;
+                }
             }
+
             if(this.filter.subCategory)
             {
                 const sub = `subCategory=${this.filter.subCategory}`;
-                if(qs.length>0) { qs += `&${sub}`; }
-                else { qs = sub; }
+
+                if(qs.length > 0)
+                {
+                    qs += `&${sub}`;
+                }
+                else
+                {
+                    qs = sub;
+                }
             }
 
             return qs.length > 0 ? `?${qs}` : "";
         }
     }
 
-    constructor() {
+    constructor()
+    {
         axios.get("./images/products/photos.json")
             .then(response => {
                 this.photos = response.data;
             });
     }
 
-    hasPhoto(photo){
+    hasPhoto(photo)
+    {
         return this.photos.filter(p => p == photo).length > 0;
     }
 
     addCategoryFilter(cat)
     {
-        if(cat == 0) this.clearCategoryFilter();
-        else this.filter.cat = cat;
+        if(cat == 0)
+        {
+            this.clearCategoryFilter();
+        }
+        else
+        {
+            this.filter.cat = cat;
+        }
     }
 
     addMinPriceFilter(price)
     {
-        if(price == 0 || price == "") this.clearMinPriceFilter();
-        else this.filter.minPrice = price;
+        if(price == 0 || price == "")
+        {
+            this.clearMinPriceFilter();
+        }
+        else
+        {
+            this.filter.minPrice = price;
+        }
     }
 
     addMaxPriceFilter(price)
     {
-        if(price == 0 || price == "") this.clearMaxPriceFilter();
-        else this.filter.maxPrice = price;
+        if(price == 0 || price == "")
+        {
+            this.clearMaxPriceFilter();
+        }
+        else
+        {
+            this.filter.maxPrice = price;
+        }
     }
 
     addSubcategoryFilter(subCategory)
     {
-        if(subCategory == "") this.clearSubcategoryFilter();
-        else this.filter.subCategory = subCategory;
+        if(subCategory == "")
+        {
+            this.clearSubcategoryFilter();
+        }
+        else
+        {
+            this.filter.subCategory = subCategory;
+        }
     }
 
-    clearCategoryFilter(){ this.filter.cat = undefined; }
-    clearMinPriceFilter(){ this.filter.minPrice = undefined; }
-    clearMaxPriceFilter(){ this.filter.maxPrice = undefined; }
-    clearSubcategoryFilter(){ this.filter.subCategory = undefined; }
+    clearCategoryFilter()
+    {
+        this.filter.cat = undefined;
+    }
+
+    clearMinPriceFilter()
+    {
+        this.filter.minPrice = undefined;
+    }
+
+    clearMaxPriceFilter()
+    {
+        this.filter.maxPrice = undefined;
+    }
+
+    clearSubcategoryFilter()
+    {
+        this.filter.subCategory = undefined;
+    }
 
     setSearchQuery(query)
     {
@@ -104,11 +173,13 @@ class ProductService {
 
         const min = document.getElementById("min-price");
         const minLabel = document.getElementById("min-price-display");
+
         if(min) min.value = "0";
         if(minLabel) minLabel.innerText = "0";
 
         const max = document.getElementById("max-price");
         const maxLabel = document.getElementById("max-price-display");
+
         if(max) max.value = "500";
         if(maxLabel) maxLabel.innerText = "500";
 
@@ -124,13 +195,13 @@ class ProductService {
         const url = `${config.baseUrl}/products${this.filter.queryString()}`;
 
         axios.get(url)
-             .then(response => {
-                 this.allProducts = response.data.map(product => this.prepareProduct(product));
-                 this.renderProducts();
-             })
+            .then(response => {
+                this.allProducts = response.data.map(product => this.prepareProduct(product));
+                this.renderProducts();
+            })
             .catch(error => {
                 console.log(error);
-                templateBuilder.append("error", { error: "Products failed to load. Make sure Spring Boot is running." }, "errors")
+                templateBuilder.append("error", { error: "Products failed to load. Make sure Spring Boot is running." }, "errors");
             });
     }
 
@@ -146,27 +217,34 @@ class ProductService {
         const title = parts.length > 1 ? parts.slice(1).join(" - ") : product.name;
         const description = product.description || "Fresh from the Moonlit crate.";
 
+        const audioFileName = product.imageUrl.replace(/\.(jpg|jpeg|png)$/i, ".mp3");
+
         return {
             ...product,
-            artist,
+            artist: artist,
             displayTitle: title.replace(" Vinyl", "").replace(" CD", ""),
             artistLine: `${artist}${product.subCategory ? " · " + product.subCategory : ""}`,
             shortDescription: description.length > 70 ? description.substring(0, 67) + "..." : description,
             labelCode: `MR-${String(product.productId).padStart(4, "0")}`,
-            previewDuration: 188 + (product.productId % 8) * 12
+            previewDuration: 188 + (product.productId % 8) * 12,
+            previewUrl: `./audio/previews/${audioFileName}`
         };
     }
 
     renderProducts()
     {
         const products = this.allProducts.filter(product => {
-            if(!this.searchQuery) return true;
+            if(!this.searchQuery)
+            {
+                return true;
+            }
 
             const haystack = `${product.name} ${product.description} ${product.subCategory}`.toLowerCase();
             return haystack.includes(this.searchQuery);
         });
 
         this.renderedProducts = products;
+
         templateBuilder.build('product', { products }, 'content', () => {
             this.enableButtons();
             this.updateRecordCount(products.length);
@@ -177,26 +255,37 @@ class ProductService {
     updateRecordCount(count)
     {
         const recordCount = document.getElementById("record-count");
-        if(recordCount) recordCount.innerText = count;
+
+        if(recordCount)
+        {
+            recordCount.innerText = count;
+        }
     }
 
     ensurePreviewProduct(products)
     {
-        if(!products.length) return;
+        if(!products.length)
+        {
+            return;
+        }
 
         if(!this.currentPreview || !products.some(p => p.productId === this.currentPreview.productId))
         {
-            this.setPreviewProduct(products[0], false);
+            this.setPreviewProduct(products[0], false, false);
         }
     }
 
     selectPreview(productId)
     {
         const product = this.allProducts.find(product => product.productId === productId);
-        if(product) this.setPreviewProduct(product, true);
+
+        if(product)
+        {
+            this.setPreviewProduct(product, true, true);
+        }
     }
 
-    setPreviewProduct(product, shouldScroll)
+    setPreviewProduct(product, shouldScroll, shouldPlay)
     {
         this.currentPreview = product;
         this.previewIndex = this.allProducts.findIndex(item => item.productId === product.productId);
@@ -216,7 +305,16 @@ class ProductService {
         if(duration) duration.innerText = formatPreviewTime(product.previewDuration);
 
         resetPreviewProgress();
-        startPreview();
+        loadPreviewAudio(product);
+
+        if(shouldPlay)
+        {
+            startPreview();
+        }
+        else
+        {
+            pausePreview();
+        }
 
         if(shouldScroll)
         {
@@ -226,16 +324,24 @@ class ProductService {
 
     nextPreview()
     {
-        if(!this.allProducts.length) return;
+        if(!this.allProducts.length)
+        {
+            return;
+        }
+
         const next = (this.previewIndex + 1) % this.allProducts.length;
-        this.setPreviewProduct(this.allProducts[next], false);
+        this.setPreviewProduct(this.allProducts[next], false, true);
     }
 
     previousPreview()
     {
-        if(!this.allProducts.length) return;
+        if(!this.allProducts.length)
+        {
+            return;
+        }
+
         const previous = (this.previewIndex - 1 + this.allProducts.length) % this.allProducts.length;
-        this.setPreviewProduct(this.allProducts[previous], false);
+        this.setPreviewProduct(this.allProducts[previous], false, true);
     }
 
     addPreviewToCart()
