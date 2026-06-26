@@ -48,14 +48,14 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // we don't need CSRF because our token is invulnerable
+
                 .csrf(csrf -> csrf.disable())
 
                 .exceptionHandling(handling -> handling
                         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                         .accessDeniedHandler(jwtAccessDeniedHandler))
 
-                // create no session
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
@@ -65,7 +65,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/login", "/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/products", "/products/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/categories", "/categories/**").permitAll()
-                        .requestMatchers("/cart/**", "/profile/**").authenticated()
+                        .requestMatchers("/cart/**", "/profile/**", "/orders/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/products", "/categories").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/products/**", "/categories/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/products/**", "/categories/**").authenticated()
