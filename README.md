@@ -4,7 +4,7 @@
 
 ### A full-stack e-commerce record store with a celestial listening experience
 
-![Java](https://img.shields.io/badge/Java-17-purple?style=for-the-badge)
+![Java](https://img.shields.io/badge/Java-26-purple?style=for-the-badge)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-API-navy?style=for-the-badge)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-indigo?style=for-the-badge)
 ![HTML](https://img.shields.io/badge/HTML-Frontend-blueviolet?style=for-the-badge)
