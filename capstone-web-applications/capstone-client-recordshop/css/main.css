@@ -212,3 +212,275 @@ main > .content-form .cart-item
     margin-bottom: 2px !important;
 }
 
+:root {
+    --moon-bg: #0f1020;
+    --moon-bg-2: #17182a;
+    --moon-card: #1d1d31;
+    --moon-cream: #f2eada;
+    --moon-gold: #c9aa52;
+    --moon-purple: #9d4edd;
+    --moon-muted: #aaa2b8;
+    --moon-border: rgba(242, 234, 218, 0.18);
+}
+
+body {
+    background:
+            radial-gradient(circle at top left, rgba(157, 78, 221, 0.18), transparent 35%),
+            radial-gradient(circle at top right, rgba(201, 170, 82, 0.12), transparent 30%),
+            var(--moon-bg);
+    color: var(--moon-cream);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 86px;
+    background: rgba(15, 16, 32, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--moon-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+header img {
+    height: 62px;
+}
+
+header a {
+    color: var(--moon-cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+}
+
+header a:hover {
+    color: var(--moon-gold);
+}
+
+header #links {
+    align-items: center;
+    gap: 24px;
+}
+
+header .cart {
+    color: var(--moon-cream);
+    border: 2px solid var(--moon-border);
+    border-radius: 999px;
+    padding: 10px 14px;
+}
+
+header .cart:hover {
+    background: var(--moon-gold);
+    color: #09152a;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 28px;
+    height: auto;
+    min-height: 87vh;
+    margin: 0;
+    padding: 28px;
+}
+
+.moon-hero {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 24px;
+    align-items: center;
+    background:
+            linear-gradient(135deg, rgba(201,170,82,0.18), rgba(157,78,221,0.14)),
+            var(--moon-bg-2);
+    border: 2px solid var(--moon-border);
+    border-radius: 28px;
+    padding: 34px;
+    box-shadow: 14px 14px 0 rgba(0,0,0,0.28);
+}
+
+.moon-hero h1 {
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
+    line-height: 0.92;
+    margin: 0;
+    letter-spacing: -0.06em;
+}
+
+.moon-hero p {
+    color: var(--moon-muted);
+    max-width: 680px;
+    margin-top: 16px;
+    font-size: 1.05rem;
+}
+
+.moon-badge {
+    display: inline-block;
+    color: var(--moon-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.75rem;
+    margin-bottom: 14px;
+}
+
+.moon-hero-card {
+    border: 2px solid var(--moon-border);
+    border-radius: 22px;
+    padding: 24px;
+    background: rgba(0,0,0,0.24);
+}
+
+.moon-hero-card .disc {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    background:
+            radial-gradient(circle, var(--moon-gold) 0 8%, #111 9% 22%, #222 23% 24%, #080808 25% 100%);
+    box-shadow: 0 0 40px rgba(201,170,82,0.18);
+}
+
+main > .filter-box {
+    width: auto;
+    background: rgba(29, 29, 49, 0.92);
+    border: 2px solid var(--moon-border);
+    border-radius: 22px;
+    padding: 22px;
+    height: fit-content;
+    position: sticky;
+    top: 110px;
+}
+
+main > .filter-box h3 {
+    color: var(--moon-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.form-select,
+.form-range {
+    cursor: pointer;
+}
+
+main > .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 22px;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.product {
+    background: var(--moon-card);
+    border: 2px solid var(--moon-border);
+    border-radius: 22px;
+    padding: 16px;
+    margin: 0;
+    box-shadow: 9px 9px 0 rgba(0,0,0,0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.product:hover {
+    transform: translate(5px, 5px);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.35);
+    border-color: rgba(201,170,82,0.65);
+}
+
+.product h4 {
+    color: var(--moon-cream);
+    font-size: 1.05rem;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.product .photo {
+    display: block;
+    padding: 0;
+}
+
+.product .photo > img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 2px solid var(--moon-border);
+    border-radius: 16px;
+    margin-bottom: 12px;
+}
+
+.product .price {
+    color: var(--moon-gold);
+    font-size: 1.25rem;
+    margin: 0 0 10px;
+}
+
+.product p {
+    color: var(--moon-muted);
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.product > .add-button {
+    margin-top: 14px;
+}
+
+.product > .add-button .btn {
+    width: 100%;
+    border-radius: 999px;
+    background: transparent;
+    border: 2px solid var(--moon-cream);
+    color: var(--moon-cream);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    padding: 10px 12px;
+}
+
+.product > .add-button .btn:hover {
+    background: var(--moon-gold);
+    border-color: var(--moon-gold);
+    color: #09152a;
+}
+
+main > .content-form {
+    background: var(--moon-card);
+    border: 2px solid var(--moon-border);
+    border-radius: 24px;
+    padding: 24px;
+}
+
+.content-form .cart-header {
+    color: var(--moon-gold);
+}
+
+.content-form .cart-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--moon-border);
+}
+
+.content-form .photo img {
+    border-radius: 14px;
+    border: 2px solid var(--moon-border);
+}
+
+#errors {
+    z-index: 100;
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+
+    .moon-hero {
+        grid-template-columns: 1fr;
+    }
+
+    main > .filter-box {
+        position: static;
+    }
+}
