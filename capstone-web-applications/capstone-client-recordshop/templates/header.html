@@ -1,27 +1,44 @@
-
 {{#loggedin}}
-<div id="links">
-    <img src="/images/logo.svg" alt="recordshop logo">
-    <a href="#" onclick="loadHome()">Home</a>
-    <a href="#" onclick="editProfile()">Profile</a>
-    <a href="#" onclick="showCart()">View Cart</a>
-</div>
+<div class="nav-inner">
+    <a class="brand" href="#" onclick="loadHome();return false;">
+        <img src="/images/moonlit-records-logo.png" alt="Moonlit Records logo">
+    </a>
 
-<div>
-    Welcome&nbsp;<span style="font-weight: bold">{{username}}</span>&nbsp;|&nbsp;<a href="#" onclick="userService.logout();return false;">logout</a>
-    <div class="cart" onclick="showCart()">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <div id="cart-items">0</div>
+    <nav class="nav-links">
+        <a href="#listen">Listen</a>
+        <a href="#browse">Browse</a>
+        <a href="#" onclick="editProfile();return false;">Profile</a>
+        <span>Open til 9 PM</span>
+    </nav>
+
+    <div class="nav-actions">
+        <span class="welcome-chip">{{username}}</span>
+        <a href="#" onclick="userService.logout();return false;">Logout</a>
+        <button class="cart" onclick="showCart()" aria-label="Open cart">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cart-items">0</span>
+        </button>
     </div>
 </div>
 {{/loggedin}}
 {{#loggedout}}
-<div id="links">
-    <img src="/images/logo.svg" alt="recordshop logo">
-    <a href="#" onclick="loadHome()">Home</a>
-</div>
+<div class="nav-inner">
+    <a class="brand" href="#" onclick="loadHome();return false;">
+        <img src="/images/moonlit-records-logo.png" alt="Moonlit Records logo">
+    </a>
 
-<div>
-    <a href="#"  onclick="showLoginForm();return false;">login</a>
+    <nav class="nav-links">
+        <a href="#listen">Listen</a>
+        <a href="#browse">Browse</a>
+        <span>Open til 9 PM</span>
+    </nav>
+
+    <div class="nav-actions">
+        <a href="#" onclick="showLoginForm();return false;">Login</a>
+        <button class="cart" onclick="showLoginForm();return false;" aria-label="Login to open cart">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cart-items">0</span>
+        </button>
+    </div>
 </div>
 {{/loggedout}}

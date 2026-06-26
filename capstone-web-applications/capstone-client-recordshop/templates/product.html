@@ -1,23 +1,31 @@
 {{#products}}
-<div class="product">
-    <div>
-        <div class="photo">
-            <img src="./images/products/{{imageUrl}}" alt="{{name}}"
-                 onclick="showImageDetailForm(`{{name}}`,'/images/products/{{imageUrl}}')">
-        </div>
+<div class="product" data-product-id="{{productId}}">
+    <button class="cover-button" onclick="productService.selectPreview({{productId}})" aria-label="Preview {{name}}">
+        <img src="./images/products/{{imageUrl}}" alt="{{name}}">
+        <span class="label-tag">{{labelCode}}</span>
+        <span class="cover-play"><i class="fa-solid fa-play"></i></span>
+    </button>
 
-        <h4>{{name}}</h4>
-        <h4 class="price">${{price}}</h4>
-
+    <div class="product-heading">
         <div>
-            <p>{{description}}</p>
+            <h3 onclick="productService.selectPreview({{productId}})">{{displayTitle}}</h3>
+            <p>{{artistLine}}</p>
         </div>
+        <strong>${{price}}</strong>
     </div>
 
-    <div class="add-button">
-        <button class="btn btn-success" onclick="cartService.addToCart({{productId}})">
-            + Add to bag
-        </button>
+    <p class="record-note">{{shortDescription}}</p>
+
+    <div class="card-actions">
+        <button class="add-button" onclick="cartService.addToCart({{productId}})">+ Add to bag</button>
+        <button class="favorite-button" onclick="toggleFavorite(event, this)" aria-label="Favorite {{name}}"><i class="fa-regular fa-heart"></i></button>
     </div>
+</div>
+{{/products}}
+{{^products}}
+<div class="empty-crate">
+    <i class="fa-solid fa-record-vinyl"></i>
+    <h3>No records found</h3>
+    <p>Try another search or clear your filters.</p>
 </div>
 {{/products}}
