@@ -62,6 +62,7 @@ public class ShoppingCartService
         }
 
         shoppingCartRepository.save(cartItem);
+
         return getByUserId(userId);
     }
 
@@ -75,14 +76,11 @@ public class ShoppingCartService
         CartItem cartItem = shoppingCartRepository.findByUserIdAndProductId(userId, productId);
 
         if (cartItem == null)
-        {
-            cartItem = new CartItem();
-            cartItem.setUserId(userId);
-            cartItem.setProductId(productId);
-        }
+            return null;
 
         cartItem.setQuantity(Math.max(quantity, 1));
         shoppingCartRepository.save(cartItem);
+
         return getByUserId(userId);
     }
 
@@ -90,6 +88,7 @@ public class ShoppingCartService
     public ShoppingCart clear(int userId)
     {
         shoppingCartRepository.deleteAll(shoppingCartRepository.findByUserId(userId));
+
         return getByUserId(userId);
     }
 }
